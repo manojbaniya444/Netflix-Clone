@@ -29,7 +29,7 @@ const HomeTop = () => {
             <button className="btn1">Play</button>
             <button className="btn2">Watch Later</button>
           </div>
-          <p className="release-date">{singleMovie?.release_date}</p>
+          <p className="release-date">Released date: {singleMovie?.release_date}</p>
           <p className="desc">{singleMovie?.overview}</p>
         </div>
       </div>
@@ -65,7 +65,7 @@ const WrapperTop = styled.div`
 
     .movie-detail {
       position: absolute;
-      top: 100px;
+      top: 150px;
       width: 100%;
       padding-left: 5%;
       .title {
@@ -81,7 +81,7 @@ const WrapperTop = styled.div`
         color: white;
         margin-top: 2rem;
         font-size: 1.3rem;
-        width: 60%;
+        width: 80%;
         word-spacing: 2px;
         
       }
@@ -110,7 +110,7 @@ const WrapperTop = styled.div`
       //Movie detail queriy
       @media (max-width: ${({ theme }) => theme.responsive.mobile}) {
           .desc{
-            
+            width: 90%;
           }
         }
     }

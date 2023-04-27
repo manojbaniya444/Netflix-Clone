@@ -4,12 +4,13 @@ import { ThemeProvider } from "styled-components";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
+import Footer from "./components/Footer";
 
 const App = () => {
   const theme = {
     responsive: {
-      mobile: "600px",
-      ipad: "768px",
+      mobile: "768px",
+      ipad: "900px",
     }
   };
   return (
@@ -19,6 +20,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
       </Routes>
+      <Footer />
     </ThemeProvider>
   );
 };
