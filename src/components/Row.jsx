@@ -11,7 +11,6 @@ const Row = ({ title, requestURL }) => {
       setMovies(res.data.results);
     });
   }, [requestURL]);
-  console.log(movies);
 
   return (
     <Wrapper>

@@ -2,26 +2,29 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { BsHeart } from "react-icons/bs";
 import { BsHeartFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const SingleMovie = ({ item }) => {
   const [isFav, setIsFav] = useState(true);
   return (
     <SingleWrapper>
-      <div className="image-div">
-        <img
-          src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
-          alt={item?.title}
-        />
-        <div className="overlay-image">
-          {isFav ? (
+      <Link to={`/moviedetail/${item?.id}`}>
+        <div className="image-div">
+          <img
+            src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
+            alt={item?.title}
+          />
+          <div className="overlay-image">
+            {isFav ? (
+              <BsHeart className="heart" />
+            ) : (
+              <BsHeartFill className="heart" />
+            )}
             <BsHeart className="heart" />
-          ) : (
-            <BsHeartFill className="heart" />
-          )}
-          <BsHeart className="heart" />
-          <h3>{item?.title}</h3>
+            <h3>{item?.title}</h3>
+          </div>
         </div>
-      </div>
+      </Link>
     </SingleWrapper>
   );
 };

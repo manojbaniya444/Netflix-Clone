@@ -1,10 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <NavWrapper>
-      <h1>NETFLIX</h1>
+      <Link to="/" className="link">
+        <h1>NETFLIX</h1>
+      </Link>
+
       <div className="nav-button-container">
         <button className="sign-in">Sign In</button>
         <button className="signup-btn">Sign Up</button>
@@ -14,6 +18,9 @@ const Navbar = () => {
 };
 
 const NavWrapper = styled.nav`
+.link{
+  text-decoration: none;
+}
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -44,7 +51,7 @@ const NavWrapper = styled.nav`
         background-color: #700c0c;
       }
     }
-    .sign-in{
+    .sign-in {
       background-color: transparent;
       border: none;
     }
