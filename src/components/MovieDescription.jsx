@@ -39,11 +39,12 @@ const MovieDescription = ({ movie, src }) => {
 const WrappperDescription = styled.div`
   font-family: "Roboto Condensed", sans-serif;
   color: white;
-  padding: 5rem;
+  padding: 5rem 2rem;
   display: flex;
   gap: 1rem;
-  /* position: absolute;
-  top: 5rem; */
+  position: absolute;
+  top: 5rem;
+  z-index: 999;
 
   .image-div {
     height: 420px;
@@ -89,15 +90,16 @@ const WrappperDescription = styled.div`
       color: grey;
     }
     .overview {
-      margin-top: 1rem;    }
+      margin-top: 1rem;
+    }
     .description {
-      font-size: 1.2rem;
-      margin-top: .3rem;
+      font-size: 1.3rem;
+      margin-top: 0.3rem;
     }
   }
   @media (max-width: ${({ theme }) => theme.responsive.mobile}) {
     flex-direction: column;
-    width: 500px;
+    width: 100%;
     max-width: 700px;
     gap: 1rem;
     margin-left: 50%;

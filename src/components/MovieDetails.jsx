@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import MovieDescription from "./MovieDescription";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState();
@@ -13,18 +15,20 @@ const MovieDetails = () => {
     axios.get(URL).then((res) => {
       setMovie(res.data);
     });
-  },[]);
+  }, []);
   console.log(movie);
   let src = `https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`;
   return (
     <Wrapper>
       <div className="image-div">
-        {/* <img className="background-image"
+        <Navbar />
+        <img className="background-image"
           src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`}
           alt="/"
-        /> */}
-        {/* <div className="overlay"></div> */}
-        <MovieDescription movie={movie} src={src}/>
+        />
+        <div className="overlay"></div>
+        <MovieDescription movie={movie} src={src} />
+        {/* <Footer /> */}
       </div>
     </Wrapper>
   );
@@ -35,14 +39,15 @@ const Wrapper = styled.article`
     /* height: 999px;
     width: 100%; */
     .background-image {
-      height: 100%;
-      width: 100%;
+      height: 100vh;
+      width: 100vw;
+      position: absolute;
       object-fit: cover;
       filter: blur(7px);
     }
-    /* .overlay {
-      height: 700px;
-      width: 100%;
+    .overlay {
+      height: 100vh;
+      width: 100vw;
       position: absolute;
       top: 0;
       left: 0;
@@ -51,7 +56,7 @@ const Wrapper = styled.article`
         rgba(0, 0, 0, 1) 0%,
         rgba(255, 255, 255, 0) 100%
       );
-    } */
+    }
   }
 `;
 export default MovieDetails;

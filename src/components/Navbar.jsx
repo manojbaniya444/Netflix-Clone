@@ -1,26 +1,58 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuthContext } from "../context/AuthContext";
 
 const Navbar = () => {
+  const { user, signOutUser } = useAuthContext();
+
+  const navigate = useNavigate();
+
+  const logoutHandler = async () => {
+    try {
+      await signOutUser();
+      // navigate("/signup");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <NavWrapper>
       <Link to="/" className="link">
-        <h1>NETFLIX</h1>
+        <h1>M-FLIX</h1>
       </Link>
 
       <div className="nav-button-container">
-        <button className="sign-in">Sign In</button>
-        <button className="signup-btn">Sign Up</button>
+        {!user?.email ? (
+          <>
+            <Link to="/signup">
+              <button className="sign-in">Sign Up</button>
+            </Link>
+            <Link to="/login">
+              <button className="signup-btn">Login</button>
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link to="/account">
+              <button className="sign-in">Account</button>
+            </Link>
+            <Link to="/login">
+              <button className="signup-btn" onClick={logoutHandler}>
+                Logout
+              </button>
+            </Link>
+          </>
+        )}
       </div>
     </NavWrapper>
   );
 };
 
 const NavWrapper = styled.nav`
-.link{
-  text-decoration: none;
-}
+  .link {
+    text-decoration: none;
+  }
   display: flex;
   align-items: center;
   justify-content: space-between;

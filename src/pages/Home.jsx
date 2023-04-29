@@ -3,15 +3,18 @@ import HomeTop from "../components/HomeTop";
 import Row from "../components/Row";
 import requests from "../Request";
 import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 
 const Home = () => {
   return (
     <>
+      <Navbar />
       <HomeTop />
-      <Row title={"Upcoming"} requestURL={requests.requestUpcoming} />
-      <Row title={"TopRated"} requestURL={requests.requestTopRated} />
-      <Row title={"Trending"} requestURL={requests.requestTrending} />
-      <Row title={"Popular"} requestURL={requests.requestPopular} />
+      <Row rowID={1} title={"Upcoming"} requestURL={requests.requestUpcoming} />
+      <Row rowID={2} title={"TopRated"} requestURL={requests.requestTopRated} />
+      <Row rowID={3} title={"Trending"} requestURL={requests.requestTrending} />
+      <Row rowID={4} title={"Popular"} requestURL={requests.requestPopular} />
+      <Footer />
     </>
   );
 };
