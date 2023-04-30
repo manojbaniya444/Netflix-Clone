@@ -2,19 +2,25 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import requests from "../Request";
+import { useAuthContext } from "../context/AuthContext";
+import VideoPlayer from "./VideoPlayer";
 
 const HomeTop = () => {
   const [movies, setMovies] = useState([]);
+  const { showModal, setShowModal } = useAuthContext();
+
   useEffect(() => {
     axios
       .get(requests.requestPopular)
       .then((res) => setMovies(res.data.results));
   }, []);
 
-  const singleMovie = movies[Math.floor(Math.random() * movies?.length)];
+  // const singleMovie = movies[Math.floor(Math.random() * movies?.length)];
+  const singleMovie = movies[0];
   //   console.log(singleMovie);
   return (
     <WrapperTop>
+      {showModal && <VideoPlayer id={singleMovie?.id} />}
       <div className="top-container">
         <div className="image-container">
           <div className="image-overlay"></div>
@@ -26,10 +32,14 @@ const HomeTop = () => {
         <div className="movie-detail">
           <p className="title">{singleMovie?.original_title}</p>
           <div className="btn-container">
-            <button className="btn1">Play</button>
-            <button className="btn2">Watch Later</button>
+            {/* <button className="btn1">Play</button> */}
+            <button className="btn2" onClick={() => setShowModal(true)}>
+              Watch Trailer
+            </button>
           </div>
-          <p className="release-date">Released date: {singleMovie?.release_date}</p>
+          <p className="release-date">
+            Released date: {singleMovie?.release_date}
+          </p>
           <p className="desc">{singleMovie?.overview}</p>
         </div>
       </div>
@@ -83,7 +93,6 @@ const WrapperTop = styled.div`
         font-size: 1.3rem;
         width: 80%;
         word-spacing: 2px;
-        
       }
       .btn-container {
         margin-top: 1rem;
@@ -91,7 +100,7 @@ const WrapperTop = styled.div`
           padding: 0.3rem 0.7rem;
           cursor: pointer;
         }
-        .btn1 {
+        .btn2 {
           border-radius: 5px;
           transition: 0.12s ease;
           border: none;
@@ -99,7 +108,7 @@ const WrapperTop = styled.div`
             background-color: #aeaeae;
           }
         }
-        .btn2 {
+        .btn1 {
           margin-left: 0.5rem;
           background-color: transparent;
           color: white;
@@ -109,10 +118,10 @@ const WrapperTop = styled.div`
       }
       //Movie detail queriy
       @media (max-width: ${({ theme }) => theme.responsive.mobile}) {
-          .desc{
-            width: 90%;
-          }
+        .desc {
+          width: 90%;
         }
+      }
     }
   }
 `;

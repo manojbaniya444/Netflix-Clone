@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const SignUp = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [error, setError] = React.useState("");
+  // const [error, setError] = React.useState("");
   const navigate = useNavigate();
 
   const { signUp } = useAuthContext();
@@ -34,7 +34,7 @@ const SignUp = () => {
             <h1 className="logo">M-flix</h1>
           </Link>
           <h1>Create Account</h1>
-          <p className="error">{error}</p>
+          {/* <p className="error">{error}</p> */}
           <input
             type="email"
             name="email"

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import requests from "../Request";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
-import { auth } from "../firebaseConfig";
+// import { auth } from "../firebaseConfig";
 import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {

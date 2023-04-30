@@ -12,4 +12,8 @@ html{
     font-size: 12px;
   }
 }
+.link{
+  text-decoration: none;
+}
+
 `;

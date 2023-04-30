@@ -17,4 +17,4 @@ export default requests;
 // https://assets.nflxext.com/ffe/siteui/vlv3/efb4855…ignuptwoweeks-perspective_alpha_website_large.jpg
 
 //video request
-// https://api.themoviedb.org/3/movie/{movie_id}/videos?api_key=<<api_key>>&language=en-US
+// https://api.themoviedb.org/3/movie/502356/videos?api_key=991a45eb353643be9d519427affc937f&language=en-US

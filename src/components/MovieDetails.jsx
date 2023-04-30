@@ -16,37 +16,48 @@ const MovieDetails = () => {
       setMovie(res.data);
     });
   }, []);
-  console.log(movie);
   let src = `https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`;
   return (
     <Wrapper>
       <div className="image-div">
         <Navbar />
-        <img className="background-image"
+        <img
+          className="background-image"
           src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`}
           alt="/"
         />
         <div className="overlay"></div>
         <MovieDescription movie={movie} src={src} />
-        {/* <Footer /> */}
       </div>
+      <div className="added-div">
+
+      </div>
+      <Footer />
     </Wrapper>
   );
 };
 
 const Wrapper = styled.article`
+.added-div{
+  height: 100px;
+  display: none;
+  @media (max-width: ${({theme})=> theme.responsive.mobile})
+  {
+    display: block;
+  }
+}
   .image-div {
     /* height: 999px;
     width: 100%; */
     .background-image {
-      height: 100vh;
+      height: 800px;
       width: 100vw;
-      position: absolute;
+      /* position: absolute; */
       object-fit: cover;
       filter: blur(7px);
     }
     .overlay {
-      height: 100vh;
+      height: 800px;
       width: 100vw;
       position: absolute;
       top: 0;
