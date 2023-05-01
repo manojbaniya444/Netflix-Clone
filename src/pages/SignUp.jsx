@@ -4,11 +4,13 @@ import requests from "../Request";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../firebaseConfig";
 
 const SignUp = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  // const [error, setError] = React.useState("");
+  const [error, setError] = React.useState("");
   const navigate = useNavigate();
 
   const { signUp } = useAuthContext();
@@ -17,11 +19,15 @@ const SignUp = () => {
     e.preventDefault();
     try {
       await signUp(email, password);
-      navigate("/");
+      setDoc(doc(db, "user", email), {
+        favouriteList: [],
+      });
+      navigate("/login");
     } catch (error) {
-      console.log(error);
+      setError(error.message);
     }
   };
+
   return (
     <SignUser>
       <div className="background-image">
@@ -34,7 +40,7 @@ const SignUp = () => {
             <h1 className="logo">M-flix</h1>
           </Link>
           <h1>Create Account</h1>
-          {/* <p className="error">{error}</p> */}
+          {error?.length !== 0 && <p className="error">{error}</p>}
           <input
             type="email"
             name="email"
@@ -118,6 +124,11 @@ const SignUser = styled.div`
         font-size: 4rem;
         text-transform: uppercase;
         margin-bottom: 1.3rem;
+      }
+      .error {
+        color: #f63030;
+        margin-top: 1rem;
+        font-size: 1.3rem;
       }
       position: absolute;
       top: 10rem;

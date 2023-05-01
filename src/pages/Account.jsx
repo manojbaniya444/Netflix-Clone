@@ -48,7 +48,7 @@ const Account = () => {
         </Link>
 
         <h1 className="fav">Favourite List</h1>
-        <h1 className="user">{user?.email}</h1>
+        <h1 className="user">User Email : {user?.email}</h1>
       </div>
 
       <div className="movie-div">
@@ -112,7 +112,7 @@ const AccountPageWrapper = styled.section`
   }
   /* padding: 2rem 3rem; */
   .user {
-    color: grey;
+    color: #0bb40b;
     margin-top: 1rem;
     font-style: italic;
   }

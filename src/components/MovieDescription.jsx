@@ -1,24 +1,23 @@
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { db } from "../firebaseConfig";
 import { useAuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import VideoPlayer from "./VideoPlayer";
 
-const MovieDescription = ({ movie, src }) => {
-  // const [fav, setFav] = useState(false);
-  // const [save, setSaved] = useState(true);
+const MovieDescription = ({ movie }) => {
   const { showModal, setShowModal } = useAuthContext();
 
   const { user } = useAuthContext();
   const navigate = useNavigate();
 
   const movieRef = doc(db, "user", `${user?.email}`);
+
+  // Function that handles the favourite movie item (Add to favourites)
+
   const favouriteHandler = async () => {
     if (user?.email) {
-      // setFav(!fav);
-      // setSaved(true);
       await updateDoc(movieRef, {
         favouriteList: arrayUnion({
           id: movie?.id,
@@ -33,6 +32,7 @@ const MovieDescription = ({ movie, src }) => {
       navigate("/login");
     }
   };
+
   return (
     <WrappperDescription>
       <div className="image-div">
@@ -65,7 +65,9 @@ const MovieDescription = ({ movie, src }) => {
         <button className="favourite-btn" onClick={favouriteHandler}>
           Add to Favourites
         </button>
-        <button className="watch-trailer" onClick={()=>setShowModal(true)}>Watch trailer</button>
+        <button className="watch-trailer" onClick={() => setShowModal(true)}>
+          Watch trailer
+        </button>
         {showModal && <VideoPlayer id={movie?.id} />}
       </div>
     </WrappperDescription>

@@ -5,18 +5,21 @@ import styled from "styled-components";
 import MovieDescription from "./MovieDescription";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import Credits from "./Credits";
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState();
   const { id } = useParams();
+
   const URL = `https://api.themoviedb.org/3/movie/${id}?api_key=991a45eb353643be9d519427affc937f&language=en-US
   `;
+
   useEffect(() => {
     axios.get(URL).then((res) => {
       setMovie(res.data);
     });
   }, []);
-  let src = `https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`;
+
   return (
     <Wrapper>
       <div className="image-div">
@@ -27,25 +30,32 @@ const MovieDetails = () => {
           alt="/"
         />
         <div className="overlay"></div>
-        <MovieDescription movie={movie} src={src} />
+        <MovieDescription movie={movie} />
       </div>
-      <div className="added-div">
-
-      </div>
+      <div className="added-div"></div>
+      <h1 className="casts">Casts</h1>
+      <Credits movieI={id} />
       <Footer />
     </Wrapper>
   );
 };
 
 const Wrapper = styled.article`
-.added-div{
-  height: 100px;
-  display: none;
-  @media (max-width: ${({theme})=> theme.responsive.mobile})
-  {
-    display: block;
+  .casts {
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+    padding: 1rem 0;
+    background-color: rgb(3, 31, 54);
+    font-family: "Roboto Condensed";
+    text-transform: uppercase;
   }
-}
+  .added-div {
+    height: 70px;
+    @media (max-width: ${({ theme }) => theme.responsive.mobile}) {
+      height: 200px;
+    }
+  }
   .image-div {
     /* height: 999px;
     width: 100%; */

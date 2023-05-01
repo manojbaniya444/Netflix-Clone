@@ -1,12 +1,12 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { auth, db } from "../firebaseConfig";
+import { auth } from "../firebaseConfig";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
@@ -16,11 +16,10 @@ const AuthContextProvider = ({ children }) => {
 
   const [isModalStateChanged, setIsModalStateChanged] = useState(false);
 
+  const navigate = useNavigate();
+
   const signUp = (email, password) => {
-    createUserWithEmailAndPassword(auth, email, password);
-    setDoc(doc(db, "user", email), {
-      favouriteList: [],
-    });
+    return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const logIn = (email, password) => {

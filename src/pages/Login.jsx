@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
@@ -20,7 +21,7 @@ const SignUp = () => {
       await logIn(email, password);
       navigate("/");
     } catch (error) {
-      console.log(error);
+      setError(error.message);
     }
   };
   return (
@@ -35,6 +36,7 @@ const SignUp = () => {
             <h1 className="logo">M-flix</h1>
           </Link>
           <h1>Sign In</h1>
+          {error?.length !== 0 && <p className="error">{error}</p>}
           <input
             type="email"
             name="email"
@@ -106,6 +108,11 @@ const SignUser = styled.div`
     .form {
       .link {
         text-decoration: none;
+      }
+      .error {
+        color: #f63030;
+        margin-top: 1rem;
+        font-size: 1.3rem;
       }
       .logo {
         color: red;

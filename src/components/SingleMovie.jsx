@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { BsHeart } from "react-icons/bs";
-import { BsHeartFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 const SingleMovie = ({ item }) => {
-  const [isFav, setIsFav] = useState(true);
   return (
     <SingleWrapper>
       <Link to={`/moviedetail/${item?.id}`}>
@@ -15,13 +12,7 @@ const SingleMovie = ({ item }) => {
             alt={item?.title}
           />
           <div className="overlay-image">
-            {isFav ? (
-              <BsHeart className="heart" />
-            ) : (
-              <BsHeartFill className="heart" />
-            )}
-            <BsHeart className="heart" />
-            <h3>{item?.title}</h3>
+            <p>{item?.title}</p>
           </div>
         </div>
       </Link>
@@ -31,7 +22,7 @@ const SingleMovie = ({ item }) => {
 
 const SingleWrapper = styled.div`
   .image-div {
-    width: 320px;
+    width: 200px;
     position: relative;
     img {
       height: 100%;
@@ -44,7 +35,7 @@ const SingleWrapper = styled.div`
     }
 
     .overlay-image {
-      width: 320px;
+      width: 200px;
       height: 100%;
       position: absolute;
       top: 0;
@@ -52,23 +43,16 @@ const SingleWrapper = styled.div`
       opacity: 0;
       cursor: pointer;
       transition: 0.7s ease;
-      h3 {
+      p {
         font-size: 1.3rem;
         text-align: center;
         margin-top: 20%;
         color: white;
         opacity: 1;
-      }
-      .heart {
-        font-size: 1.3rem;
-        top: 7px;
-        left: 3px;
-        position: absolute;
-        opacity: 0.7;
-        color: white;
-        &:hover {
-          opacity: 1;
-        }
+        
+    @media (max-width: ${({ theme }) => theme.responsive.mobile}) {
+      margin-top: 4%;
+    }
       }
       &:hover {
         opacity: 0.7;
@@ -79,9 +63,9 @@ const SingleWrapper = styled.div`
     }
 
     @media (max-width: ${({ theme }) => theme.responsive.mobile}) {
-      width: 200px;
+      width: 120px;
       .overlay-image {
-        width: 200px;
+        width: 120px;
       }
     }
   }

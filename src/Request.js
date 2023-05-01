@@ -11,6 +11,7 @@ const requests = {
   `,
   requestNetflixImage:
     "https://assets.nflxext.com/ffe/siteui/vlv3/efb4855d-e702-43e5-9997-bba0154152e0/8ba30f8b-11dc-48d1-a346-c1b9051b9c4f/NP-en-20230417-popsignuptwoweeks-perspective_alpha_website_large.jpg",
+    requestNow: `https://api.themoviedb.org/3/movie/latest?api_key=${APIkey}&language=en-US`
 };
 export default requests;
 
@@ -18,3 +19,8 @@ export default requests;
 
 //video request
 // https://api.themoviedb.org/3/movie/502356/videos?api_key=991a45eb353643be9d519427affc937f&language=en-US
+
+
+//Credits
+
+// https://api.themoviedb.org/3/movie/1112386/credits?api_key=991a45eb353643be9d519427affc937f&language=en-US

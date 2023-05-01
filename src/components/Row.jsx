@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import SingleMovie from "./SingleMovie";
-import { GrNext } from "react-icons/gr";
 
 const Row = ({ title, requestURL, rowID }) => {
   const [movies, setMovies] = useState([]);
@@ -30,7 +29,7 @@ const Row = ({ title, requestURL, rowID }) => {
         Prev
       </p>
       <div className="slider" id={"slider" + rowID}>
-        {movies.map((item, index) => {
+        {movies?.map((item, index) => {
           return <SingleMovie key={index} item={item} />;
         })}
       </div>

@@ -6,12 +6,9 @@ import { useAuthContext } from "../context/AuthContext";
 const Navbar = () => {
   const { user, signOutUser } = useAuthContext();
 
-  const navigate = useNavigate();
-
   const logoutHandler = async () => {
     try {
       await signOutUser();
-      // navigate("/signup");
     } catch (error) {
       console.log(error);
     }
@@ -50,9 +47,6 @@ const Navbar = () => {
 };
 
 const NavWrapper = styled.nav`
-  .link {
-    text-decoration: none;
-  }
   display: flex;
   align-items: center;
   justify-content: space-between;
