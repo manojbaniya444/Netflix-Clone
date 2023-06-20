@@ -54,7 +54,7 @@ const NavWrapper = styled.nav`
   width: 100%;
   background: transparent;
   /* margin: 3px 2% 0; */
-  padding: 0 5% 0 5%;
+  padding: 10px 5% 10px 5%;
   margin-top: 5px;
   z-index: 9;
   h1 {
